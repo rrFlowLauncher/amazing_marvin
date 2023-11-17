@@ -13,7 +13,7 @@ class HelloWorld(FlowLauncher):
     def query(self, query):
         return [
             {
-                "title": "Hello World, this is where title goes. {}".format(('Your query is: ' + query , query)[query == '']),
+                "title": "Hello World, ({}) this is where title goes. {}".format(self.settings.get("url"),('Your query is: ' + query , query)[query == '']),
                 "subTitle": "This is where your subtitle goes, press enter to open Flow's url",
                 "icoPath": "Images/app.png",
                 "jsonRPCAction": {
