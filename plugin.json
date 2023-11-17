@@ -1,12 +1,12 @@
 {
-    "ID": "",
-    "ActionKeyword": "xx",
-    "Name": "RR-Template",
-    "Description": "Template for my plugins",
+    "ID": "90f799c3-c04e-443b-bce8-eec5fbcba1e9",
+    "ActionKeyword": "am",
+    "Name": "Amazing Marvin",
+    "Description": "Plugin to run Amazing Marvin",
     "Author": "Robert Rennert",
     "Version": "0.1.0",
     "Language": "python",
-    "Website": "https://github.com/rrFlowLauncher/FL_plugin_template/",
-    "IcoPath": "Images\\app.png",
+    "Website": "https://github.com/rrFlowLauncher/amazing_marvin/",
+    "IcoPath": "Images\\Amazing_Marvin.09233c09.png",
     "ExecuteFileName": "main.py"
 }
