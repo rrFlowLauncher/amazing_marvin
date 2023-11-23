@@ -1,5 +1,7 @@
 import requests
 import keyring
+
+from py_youtube import Data as yt_data
 from flox import Flox
 
 KEYRING_SERVICE = "AM"
@@ -20,10 +22,17 @@ class AmazingMarvin(Flox):
     def query(self, query):
         if self.api_key:
             self.add_item(
-                title="Create a new task",
+                title="Create task",
                 subtitle="Create a task for inbox",
                 method=self.create_task,
                 parameters=[query],
+                score=90
+            )
+            self.add_item(
+                title="Create task with YT Link",
+                subtitle="Create a task for inbox (Transform Information from YouTube Link)",
+                method=self.create_task,
+                parameters=[query, True],
                 score=90
             )
             self.add_item(
@@ -52,7 +61,16 @@ class AmazingMarvin(Flox):
     def set_api_key(api_key):
         keyring.set_password(KEYRING_SERVICE, KEYRING_API_KEY_NAME, api_key)
 
-    def create_task(self, title):
+    def create_task(self, title, yt_link=False):
+        if yt_link:
+            new_title = ""
+            for item in title.split():
+                if "www.youtube.com" in item:
+                    youtube_data = yt_data(item).data()
+                    new_title += "'{}' ({}) @YouTube ".format(youtube_data["title"], item)
+                else:
+                    new_title += "{} ".format(item)
+            title = new_title
         endpoint = "addTask"
         url = "{}{}".format(self.url, endpoint)
         data = {
